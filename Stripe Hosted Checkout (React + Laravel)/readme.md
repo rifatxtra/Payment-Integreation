@@ -1,8 +1,3 @@
-
-Sure! Here is a description that you can add to the top of your `README.md` file to explain what the code does:
-
----
-
 # Stripe Integration with Laravel and React
 
 This project provides a complete integration of **Stripe Checkout** in a web application with a **Laravel** backend and a **React** frontend. It allows users to make payments using Stripe's secure and seamless checkout experience. The following features are implemented:
