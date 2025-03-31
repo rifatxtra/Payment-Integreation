@@ -131,57 +131,9 @@ export default App;
 
 ---
 
-## 3. **Handle Webhooks in Laravel** (Optional but Recommended)
 
-### Create a Webhook Controller
-Run:
-```sh
-php artisan make:controller StripeWebhookController
-```
 
-Modify `app/Http/Controllers/StripeWebhookController.php`:
-
-```php
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Stripe\Stripe;
-use Stripe\Webhook;
-
-class StripeWebhookController extends Controller
-{
-    public function handleWebhook(Request $request)
-    {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
-        $payload = $request->all();
-
-        if ($payload['type'] === 'checkout.session.completed') {
-            // Payment successful, update database as needed
-        }
-
-        return response()->json(['status' => 'success']);
-    }
-}
-```
-
-### Define Webhook Route
-Modify `routes/api.php`:
-
-```php
-use App\Http\Controllers\StripeWebhookController;
-
-Route::post('/stripe-webhook', [StripeWebhookController::class, 'handleWebhook']);
-```
-
-### Register Webhook in Stripe
-Run the following in your terminal:
-```sh
-stripe listen --forward-to http://127.0.0.1:8000/api/stripe-webhook
-```
-
----
-
-## 4. **Run the Project**
+## 3. **Run the Project**
 
 ### Start Laravel Server
 ```sh
@@ -195,7 +147,7 @@ npm start
 
 ---
 
-## 5. **Test the Checkout Flow**
+## 4. **Test the Checkout Flow**
 - Click the **Pay with Stripe** button in your React app.
 - You will be redirected to Stripe's Hosted Checkout page.
 - Use Stripe test cards (e.g., `4242 4242 4242 4242` with any future expiry date and CVC) to complete the payment.
